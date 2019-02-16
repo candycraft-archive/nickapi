@@ -119,7 +119,9 @@ public class NickManager {
 
     public void nick(Player player, String nick, Property texture) {
 
-        if (TimoCloudAPI.getBukkitAPI().getThisServer().getGroup().getName().equals("Lobby"))
+        if (TimoCloudAPI.getBukkitAPI().getThisServer().getGroup().getName().equals("Lobby")
+                || TimoCloudAPI.getBukkitAPI().getThisServer().getName().equals("CandyCane")
+                || TimoCloudAPI.getBukkitAPI().getThisServer().getName().equals("Gingerbread"))
             return;
 
         PlayerNickEvent event = new PlayerNickEvent(player, nick);
