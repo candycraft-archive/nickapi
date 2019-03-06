@@ -1,7 +1,7 @@
 package de.pauhull.nickapi.listener;
 
 import cloud.timo.TimoCloud.api.TimoCloudAPI;
-import de.pauhull.nickapi.NickAPI;
+import de.pauhull.nickapi.NickApi;
 import de.pauhull.nickapi.Permissions;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -17,29 +17,29 @@ import org.bukkit.event.player.PlayerLoginEvent;
  */
 public class PlayerLoginListener implements Listener {
 
-    private NickAPI nickAPI;
+    private NickApi nickApi;
 
-    public PlayerLoginListener(NickAPI nickAPI) {
-        this.nickAPI = nickAPI;
+    public PlayerLoginListener(NickApi nickApi) {
+        this.nickApi = nickApi;
 
-        Bukkit.getPluginManager().registerEvents(this, nickAPI);
+        Bukkit.getPluginManager().registerEvents(this, nickApi);
     }
 
     @EventHandler
     public void onPlayerLogin(PlayerLoginEvent event) {
 
         Player player = event.getPlayer();
-        nickAPI.getNickTable().isAutoNick(player.getUniqueId(), autoNick -> {
+        nickApi.getNickTable().isAutoNick(player.getUniqueId(), autoNick -> {
             if (autoNick) {
                 if (!player.hasPermission(Permissions.NICK)) {
-                    nickAPI.getNickTable().setAutoNick(player.getUniqueId(), false);
+                    nickApi.getNickTable().setAutoNick(player.getUniqueId(), false);
                     return;
                 }
 
                 if (!TimoCloudAPI.getBukkitAPI().getThisServer().getGroup().getName().equals("Lobby")
                         && !TimoCloudAPI.getBukkitAPI().getThisServer().getName().equals("CandyCane")
                         && !TimoCloudAPI.getBukkitAPI().getThisServer().getName().equals("Gingerbread")) {
-                    nickAPI.getNickManager().nick(player);
+                    nickApi.getNickManager().nick(player);
                 }
             }
         });

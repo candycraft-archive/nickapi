@@ -1,6 +1,7 @@
 package de.pauhull.nickapi;
 
 import de.pauhull.nickapi.command.NickCommand;
+import de.pauhull.nickapi.command.NickListCommand;
 import de.pauhull.nickapi.data.MySQL;
 import de.pauhull.nickapi.data.table.NickTable;
 import de.pauhull.nickapi.listener.PlayerJoinListener;
@@ -24,10 +25,10 @@ import java.util.concurrent.Executors;
  *
  * @author pauhull
  */
-public class NickAPI extends JavaPlugin {
+public class NickApi extends JavaPlugin {
 
     @Getter
-    private static NickAPI instance;
+    private static NickApi instance;
 
     @Getter
     private SpigotUUIDFetcher uuidFetcher;
@@ -67,6 +68,7 @@ public class NickAPI extends JavaPlugin {
 
         this.nickTable = new NickTable(mySQL, executorService);
 
+        new NickListCommand(this);
         new NickCommand(this);
         new PlayerLoginListener(this);
         new PlayerJoinListener(this);

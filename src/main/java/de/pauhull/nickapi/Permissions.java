@@ -9,5 +9,6 @@ package de.pauhull.nickapi;
 public class Permissions {
 
     public static final String NICK = "nickapi.nick";
+    public static final String NICKLIST = "nickapi.nicklist";
 
 }

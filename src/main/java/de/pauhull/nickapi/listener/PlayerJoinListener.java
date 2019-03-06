@@ -1,7 +1,7 @@
 package de.pauhull.nickapi.listener;
 
 import de.pauhull.nickapi.Messages;
-import de.pauhull.nickapi.NickAPI;
+import de.pauhull.nickapi.NickApi;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,20 +16,20 @@ import org.bukkit.event.player.PlayerJoinEvent;
  */
 public class PlayerJoinListener implements Listener {
 
-    private NickAPI nickAPI;
+    private NickApi nickApi;
 
-    public PlayerJoinListener(NickAPI nickAPI) {
-        this.nickAPI = nickAPI;
+    public PlayerJoinListener(NickApi nickApi) {
+        this.nickApi = nickApi;
 
-        Bukkit.getPluginManager().registerEvents(this, nickAPI);
+        Bukkit.getPluginManager().registerEvents(this, nickApi);
     }
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        if (nickAPI.getNickManager().getNicked().containsKey(player.getUniqueId())) {
-            String nick = nickAPI.getNickManager().getNicked().get(player.getUniqueId());
+        if (nickApi.getNickManager().getNicked().containsKey(player.getUniqueId())) {
+            String nick = nickApi.getNickManager().getNicked().get(player.getUniqueId());
             player.sendMessage(Messages.PREFIX + "Du bist nun als \"§e" + nick + "§7\" genickt!");
         }
     }

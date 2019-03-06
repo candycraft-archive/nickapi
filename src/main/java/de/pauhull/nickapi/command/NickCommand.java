@@ -1,7 +1,7 @@
 package de.pauhull.nickapi.command;
 
 import de.pauhull.nickapi.Messages;
-import de.pauhull.nickapi.NickAPI;
+import de.pauhull.nickapi.NickApi;
 import de.pauhull.nickapi.Permissions;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,12 +16,12 @@ import org.bukkit.entity.Player;
  */
 public class NickCommand implements CommandExecutor {
 
-    private NickAPI nickAPI;
+    private NickApi nickApi;
 
-    public NickCommand(NickAPI nickAPI) {
-        this.nickAPI = nickAPI;
+    public NickCommand(NickApi nickApi) {
+        this.nickApi = nickApi;
 
-        nickAPI.getCommand("nick").setExecutor(this);
+        nickApi.getCommand("nick").setExecutor(this);
     }
 
     @Override
@@ -38,20 +38,20 @@ public class NickCommand implements CommandExecutor {
 
         Player player = (Player) sender;
         if (args.length > 0 && args[0].equalsIgnoreCase("refresh")) {
-            nickAPI.getNickManager().refresh(player);
+            nickApi.getNickManager().refresh(player);
             player.sendMessage(Messages.PREFIX + "Dein Skin wurde aktualisiert.");
             return true;
         }
 
-        nickAPI.getNickTable().isAutoNick(player.getUniqueId(), autoNick -> {
-            nickAPI.getNickTable().setAutoNick(player.getUniqueId(), !autoNick);
+        nickApi.getNickTable().isAutoNick(player.getUniqueId(), autoNick -> {
+            nickApi.getNickTable().setAutoNick(player.getUniqueId(), !autoNick);
             if (autoNick) {
                 sender.sendMessage(Messages.PREFIX + "Du wirst nun §cnicht §7mehr genickt!");
-                nickAPI.getNickManager().unnick(player, false);
+                nickApi.getNickManager().unnick(player, false);
             } else {
                 sender.sendMessage(Messages.PREFIX + "Du wirst nun §aautomatisch §7genickt!");
-                if (!nickAPI.getNickManager().getNicked().containsKey(player.getUniqueId())) {
-                    nickAPI.getNickManager().nick(player);
+                if (!nickApi.getNickManager().getNicked().containsKey(player.getUniqueId())) {
+                    nickApi.getNickManager().nick(player);
                 }
             }
         });

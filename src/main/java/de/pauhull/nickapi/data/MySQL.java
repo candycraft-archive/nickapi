@@ -1,6 +1,6 @@
 package de.pauhull.nickapi.data;
 
-import de.pauhull.nickapi.NickAPI;
+import de.pauhull.nickapi.NickApi;
 import org.bukkit.Bukkit;
 
 import java.sql.*;
@@ -33,7 +33,7 @@ public class MySQL {
             return true;
         } catch (SQLException e) {
             Bukkit.getConsoleSender().sendMessage("§cKonnte nicht zur MySQL verbinden: " + e.getMessage());
-            Bukkit.getPluginManager().disablePlugin(NickAPI.getInstance());
+            Bukkit.getPluginManager().disablePlugin(NickApi.getInstance());
 
             return false;
         }

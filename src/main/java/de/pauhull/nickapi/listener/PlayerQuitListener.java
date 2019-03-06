@@ -1,6 +1,6 @@
 package de.pauhull.nickapi.listener;
 
-import de.pauhull.nickapi.NickAPI;
+import de.pauhull.nickapi.NickApi;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,18 +15,18 @@ import org.bukkit.event.player.PlayerQuitEvent;
  */
 public class PlayerQuitListener implements Listener {
 
-    private NickAPI nickAPI;
+    private NickApi nickApi;
 
-    public PlayerQuitListener(NickAPI nickAPI) {
-        this.nickAPI = nickAPI;
+    public PlayerQuitListener(NickApi nickApi) {
+        this.nickApi = nickApi;
 
-        Bukkit.getPluginManager().registerEvents(this, nickAPI);
+        Bukkit.getPluginManager().registerEvents(this, nickApi);
     }
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        nickAPI.getNickManager().unnick(player, false);
+        nickApi.getNickManager().unnick(player, false);
     }
 
 }

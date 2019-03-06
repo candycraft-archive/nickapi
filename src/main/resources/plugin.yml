@@ -1,9 +1,10 @@
 author: pauhull
 name: NickAPI
 version: 1.0
-main: de.pauhull.nickapi.NickAPI
+main: de.pauhull.nickapi.NickApi
 
 depend: [TimoCloud, SpigotUUIDFetcher]
 
 commands:
   nick:
+  nicklist:
