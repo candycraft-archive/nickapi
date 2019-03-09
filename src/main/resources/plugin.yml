@@ -8,3 +8,4 @@ depend: [TimoCloud, SpigotUUIDFetcher]
 commands:
   nick:
   nicklist:
+  setnick:

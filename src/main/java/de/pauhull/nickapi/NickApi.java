@@ -2,10 +2,12 @@ package de.pauhull.nickapi;
 
 import de.pauhull.nickapi.command.NickCommand;
 import de.pauhull.nickapi.command.NickListCommand;
+import de.pauhull.nickapi.command.SetNickCommand;
 import de.pauhull.nickapi.data.MySQL;
 import de.pauhull.nickapi.data.table.NickTable;
 import de.pauhull.nickapi.listener.PlayerJoinListener;
 import de.pauhull.nickapi.listener.PlayerLoginListener;
+import de.pauhull.nickapi.listener.PlayerQuitListener;
 import de.pauhull.nickapi.manager.NickManager;
 import de.pauhull.uuidfetcher.spigot.SpigotUUIDFetcher;
 import lombok.Getter;
@@ -72,6 +74,8 @@ public class NickApi extends JavaPlugin {
         new NickCommand(this);
         new PlayerLoginListener(this);
         new PlayerJoinListener(this);
+        new PlayerQuitListener(this);
+        new SetNickCommand(this);
     }
 
     @Override

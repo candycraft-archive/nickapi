@@ -14,17 +14,23 @@ public class NickData {
 
     public static class Response {
 
-        public String playername;
+        public Nick[] nicks;
 
-        public Skin skin;
+        public static class Nick {
 
-        public static class Skin {
+            public String playername;
 
-            public String url;
+            public Skin skin;
 
-            public String value;
+            public static class Skin {
 
-            public String signature;
+                public String url;
+
+                public String value;
+
+                public String signature;
+
+            }
 
         }
 
