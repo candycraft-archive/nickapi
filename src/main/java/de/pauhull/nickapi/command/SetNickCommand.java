@@ -36,6 +36,12 @@ public class SetNickCommand implements CommandExecutor {
 
         if (args.length < 1) {
             sender.sendMessage(Messages.PREFIX + "§c/setnick <Nick>");
+            return true;
+        }
+
+        if (args[0].length() > 16) {
+            sender.sendMessage(Messages.PREFIX + "§cDer Name darf höchstens 16 Zeichen lang sein!");
+            return true;
         }
 
         nickApi.getUuidFetcher().fetchProfileAsync(args[0], profile -> {
