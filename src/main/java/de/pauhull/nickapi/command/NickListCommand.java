@@ -45,7 +45,7 @@ public class NickListCommand implements CommandExecutor {
                 if (player == null) {
                     continue;
                 }
-                player.sendMessage("§8● §a" + player.getDisplayName() + " §8(§e" + player.getName() + "§8)");
+                sender.sendMessage("§8● §a" + player.getDisplayName() + " §8(§e" + player.getName() + "§8)");
             }
             sender.sendMessage(" ");
         }

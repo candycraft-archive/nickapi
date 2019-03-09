@@ -107,8 +107,6 @@ public class NickManager implements Runnable {
         if (event.isCancelled())
             return;
 
-        player.setDisplayName(player.getName());
-
         EntityPlayer entityPlayer = ((CraftPlayer) player).getHandle();
         oldProfiles.put(player.getUniqueId(), entityPlayer.getProfile());
 
@@ -162,8 +160,6 @@ public class NickManager implements Runnable {
             if (player.isValid() && sendMessage) {
                 player.sendMessage(Messages.PREFIX + "Du bist §cnicht §7mehr genickt!");
             }
-
-            player.setDisplayName(oldProfile.getName());
 
             PostPlayerUnnickEvent postEvent = new PostPlayerUnnickEvent(player, nick);
             Bukkit.getPluginManager().callEvent(postEvent);
