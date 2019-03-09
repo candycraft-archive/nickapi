@@ -97,6 +97,10 @@ public class NickManager implements Runnable {
                 || TimoCloudAPI.getBukkitAPI().getThisServer().getName().equals("Gingerbread"))
             return;
 
+        if (nicked.containsKey(player.getUniqueId())) {
+            unnick(player, false, false);
+        }
+
         PlayerNickEvent event = new PlayerNickEvent(player, nick);
         Bukkit.getPluginManager().callEvent(event);
 
@@ -136,7 +140,7 @@ public class NickManager implements Runnable {
         }
     }
 
-    public void unnick(Player player, boolean sendMessage) {
+    public void unnick(Player player, boolean sendMessage, boolean refresh) {
         if (nicked.containsKey(player.getUniqueId())) {
 
             String nick = nicked.get(player.getUniqueId());
@@ -150,11 +154,16 @@ public class NickManager implements Runnable {
             setProfile(entityPlayer, oldProfile);
             oldProfiles.remove(player.getUniqueId());
             nicked.remove(player.getUniqueId());
-            refresh(player);
+
+            if (refresh) {
+                refresh(player);
+            }
 
             if (player.isValid() && sendMessage) {
                 player.sendMessage(Messages.PREFIX + "Du bist §cnicht §7mehr genickt!");
             }
+
+            player.setDisplayName(oldProfile.getName());
 
             PostPlayerUnnickEvent postEvent = new PostPlayerUnnickEvent(player, nick);
             Bukkit.getPluginManager().callEvent(postEvent);

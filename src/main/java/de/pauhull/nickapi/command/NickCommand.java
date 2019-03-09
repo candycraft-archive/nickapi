@@ -47,7 +47,7 @@ public class NickCommand implements CommandExecutor {
             nickApi.getNickTable().setAutoNick(player.getUniqueId(), !autoNick);
             if (autoNick) {
                 sender.sendMessage(Messages.PREFIX + "Du wirst nun §cnicht §7mehr genickt!");
-                nickApi.getNickManager().unnick(player, false);
+                nickApi.getNickManager().unnick(player, false, true);
             } else {
                 sender.sendMessage(Messages.PREFIX + "Du wirst nun §aautomatisch §7genickt!");
                 if (!nickApi.getNickManager().getNicked().containsKey(player.getUniqueId())) {
