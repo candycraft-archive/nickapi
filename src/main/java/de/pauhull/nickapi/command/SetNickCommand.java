@@ -50,9 +50,13 @@ public class SetNickCommand implements CommandExecutor {
                 return;
             }
 
-            nickApi.getNickManager().getSkinTexture(profile.getUuid(), skinTexture -> {
-                nickApi.getNickManager().nick((Player) sender, profile.getPlayerName(), skinTexture);
-            });
+            if (nickApi.getNickManager() != null) {
+                nickApi.getNickManager().getSkinTexture(profile.getUuid(), skinTexture -> {
+                    nickApi.getNickManager().nick((Player) sender, profile.getPlayerName(), skinTexture);
+                });
+            } else {
+                sender.sendMessage(Messages.PREFIX + "§cHier nicht möglich.");
+            }
         });
 
         return true;

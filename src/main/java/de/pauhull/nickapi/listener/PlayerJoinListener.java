@@ -28,9 +28,11 @@ public class PlayerJoinListener implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        if (nickApi.getNickManager().getNicked().containsKey(player.getUniqueId())) {
-            String nick = nickApi.getNickManager().getNicked().get(player.getUniqueId());
-            player.sendMessage(Messages.PREFIX + "Du bist nun als \"§e" + nick + "§7\" genickt!");
+        if (nickApi.getNickManager() != null) {
+            if (nickApi.getNickManager().getNicked().containsKey(player.getUniqueId())) {
+                String nick = nickApi.getNickManager().getNicked().get(player.getUniqueId());
+                player.sendMessage(Messages.PREFIX + "Du bist nun als \"§e" + nick + "§7\" genickt!");
+            }
         }
     }
 

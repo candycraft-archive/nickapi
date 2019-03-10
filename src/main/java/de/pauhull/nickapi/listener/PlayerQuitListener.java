@@ -26,7 +26,9 @@ public class PlayerQuitListener implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        nickApi.getNickManager().unnick(player, false, false);
+        if (nickApi.getNickManager() != null) {
+            nickApi.getNickManager().unnick(player, false, false);
+        }
     }
 
 }

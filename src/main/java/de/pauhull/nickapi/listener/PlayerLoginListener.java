@@ -38,7 +38,8 @@ public class PlayerLoginListener implements Listener {
 
                 if (!TimoCloudAPI.getBukkitAPI().getThisServer().getGroup().getName().equals("Lobby")
                         && !TimoCloudAPI.getBukkitAPI().getThisServer().getName().equals("CandyCane")
-                        && !TimoCloudAPI.getBukkitAPI().getThisServer().getName().equals("Gingerbread")) {
+                        && !TimoCloudAPI.getBukkitAPI().getThisServer().getName().equals("Gingerbread")
+                        && nickApi.getNickManager() != null) {
                     nickApi.getNickManager().nick(player);
                 }
             }

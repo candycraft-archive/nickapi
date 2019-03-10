@@ -38,8 +38,12 @@ public class NickCommand implements CommandExecutor {
 
         Player player = (Player) sender;
         if (args.length > 0 && args[0].equalsIgnoreCase("refresh")) {
-            nickApi.getNickManager().refresh(player);
-            player.sendMessage(Messages.PREFIX + "Dein Skin wurde aktualisiert.");
+            if (nickApi.getNickManager() != null) {
+                nickApi.getNickManager().refresh(player);
+                player.sendMessage(Messages.PREFIX + "Dein Skin wurde aktualisiert.");
+            } else {
+                player.sendMessage(Messages.PREFIX + "§cHier nicht möglich.");
+            }
             return true;
         }
 
@@ -47,11 +51,15 @@ public class NickCommand implements CommandExecutor {
             nickApi.getNickTable().setAutoNick(player.getUniqueId(), !autoNick);
             if (autoNick) {
                 sender.sendMessage(Messages.PREFIX + "Du wirst nun §cnicht §7mehr genickt!");
-                nickApi.getNickManager().unnick(player, false, true);
+                if (nickApi.getNickManager() != null) {
+                    nickApi.getNickManager().unnick(player, false, true);
+                }
             } else {
                 sender.sendMessage(Messages.PREFIX + "Du wirst nun §aautomatisch §7genickt!");
-                if (!nickApi.getNickManager().getNicked().containsKey(player.getUniqueId())) {
-                    nickApi.getNickManager().nick(player);
+                if (nickApi.getNickManager() != null) {
+                    if (!nickApi.getNickManager().getNicked().containsKey(player.getUniqueId())) {
+                        nickApi.getNickManager().nick(player);
+                    }
                 }
             }
         });

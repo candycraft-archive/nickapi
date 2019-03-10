@@ -11,6 +11,7 @@ import de.pauhull.nickapi.listener.PlayerQuitListener;
 import de.pauhull.nickapi.manager.NickManager;
 import de.pauhull.uuidfetcher.spigot.SpigotUUIDFetcher;
 import lombok.Getter;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -55,7 +56,13 @@ public class NickApi extends JavaPlugin {
         instance = this;
         this.uuidFetcher = SpigotUUIDFetcher.getInstance();
         this.executorService = Executors.newSingleThreadExecutor();
-        this.nickManager = new NickManager(this);
+
+        if (Bukkit.getVersion().contains("1.8")) {
+            this.nickManager = new NickManager(this);
+        } else {
+            this.nickManager = null;
+        }
+
         this.config = copyAndLoad("config.yml", new File(getDataFolder(), "config.yml"));
         this.mySQL = new MySQL(config.getString("MySQL.Host"),
                 config.getString("MySQL.Port"),

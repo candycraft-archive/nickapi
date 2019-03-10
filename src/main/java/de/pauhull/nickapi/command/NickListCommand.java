@@ -34,6 +34,11 @@ public class NickListCommand implements CommandExecutor {
             return true;
         }
 
+        if (nickApi.getNickManager() == null) {
+            sender.sendMessage(Messages.PREFIX + "§cHier nicht möglich.");
+            return true;
+        }
+
         Map<UUID, String> nicked = nickApi.getNickManager().getNicked();
         if (nicked.isEmpty()) {
             sender.sendMessage(Messages.PREFIX + "§cAuf deinem Server ist niemand genickt.");
