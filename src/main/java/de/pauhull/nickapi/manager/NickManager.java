@@ -97,6 +97,10 @@ public class NickManager implements Runnable {
                 || TimoCloudAPI.getBukkitAPI().getThisServer().getName().equals("Gingerbread"))
             return;
 
+        if (nick.length() > 16) {
+            nick = nick.substring(0, 16);
+        }
+
         if (nicked.containsKey(player.getUniqueId())) {
             unnick(player, false, false);
         }
